@@ -14,10 +14,10 @@ The MyMonero libapp build requires you to have installed docker. Docker should b
 8. `rm libapp_js/MyMoneroLibAppCpp_*`
 
 ### Build boost emscripten
-9. `docker run -it -v $(pwd):/app quay.io/exodusmovement/emscripten:1.38.48 ./bin/build-boost-emscripten.sh`
+9. `docker run --rm -it -v $(pwd):/app -w /app emscripten/emsdk ./bin/build-boost-emscripten.sh`
 
 ### Build MyMonero emscripten
-10. `docker run -it -v $(pwd):/app quay.io/exodusmovement/emscripten:1.38.48 ./bin/archive-emcpp.sh`
+10. `docker run --rm -it -v $(pwd):/app -w /app -e EMSCRIPTEN=/emsdk/upstream/emscripten emscripten/emsdk ./bin/archive-emcpp.sh`
  * If you get '#error Including <emscripten/bind.h> requires building with -std=c++11 or newer!' error, re-run step 10. 
  
  By following these instructions, new WASM and ASM libraries are generated and copied to the libapp_js folder
